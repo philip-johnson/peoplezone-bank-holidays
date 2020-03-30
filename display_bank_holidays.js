@@ -1,4 +1,4 @@
-function UpdateBankHolidays() {
+(function UpdateBankHolidays() {
   const endpoint = 'https://www.gov.uk/bank-holidays.json';
   fetch(endpoint).then((response) => response.json()).then((data) => handleData(data));
   
@@ -45,4 +45,4 @@ function UpdateBankHolidays() {
     }
   }
   };
-};
+})()
