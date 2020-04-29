@@ -30,7 +30,7 @@
       var teamMemberRows = document.getElementsByClassName("pickadate-cell");      
       processRows(teamMemberRows, englandDates, monthYearFormatted);
       
-      var otherTeamMemberRows = teamMemberRows.lastElementChild.lastElementChild.firstElementChild.children;
+      var otherTeamMemberRows = teamMemberRows[teamMemberRows.length - 1].lastElementChild.firstElementChild.children;
       processRows(otherTeamMemberRows, englandDates, monthYearFormatted);
     }
     else {
