@@ -4,7 +4,7 @@
   
   function handleData(data) {
     let bankHolidays = data;
-    var englandDates = bankHolidays["england-and-wales"].events;
+    var englandDates = bankHolidays['england-and-wales'].events;
 
     var monthNameMap = {
                     January: '01',
@@ -21,13 +21,13 @@
                     December: '12',
                };
             
-    var bookedHolidays = document.getElementsByClassName("pickadate-partialdate");
+    var bookedHolidays = document.getElementsByClassName('pickadate-partialdate');
 
     if (bookedHolidays.length == 0) {
-      var monthYear = document.getElementsByClassName("pickadate-centered-heading")[1].innerText.trim().split(' ');
+      var monthYear = document.getElementsByClassName('pickadate-centered-heading')[1].innerText.trim().split(' ');
       var monthYearFormatted = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-';    
       
-      var teamMemberRows = document.getElementsByClassName("pickadate-cell");      
+      var teamMemberRows = document.getElementsByClassName('pickadate-cell');      
       processRows(teamMemberRows, englandDates, monthYearFormatted);
       
       var otherTeamMemberRows = teamMemberRows[teamMemberRows.length - 1].lastElementChild.firstElementChild.children;
@@ -48,10 +48,10 @@
         var j;	
         for (j = 0; j < englandDates.length; j++) {
           if (englandDates[j].date == holidayDate) {
-            bookedHolidays[i].style.backgroundColor = "#fcb05f";
-            bookedHolidays[i].style.borderColor = "#fcb05f";
-            bookedHolidays[i].parentElement.firstElementChild.style.backgroundColor = "#fcb05f";
-            bookedHolidays[i].parentElement.firstElementChild.style.borderColor = "#fcb05f";
+            bookedHolidays[i].style.backgroundColor = '#fcb05f';
+            bookedHolidays[i].style.borderColor = '#fcb05f';
+            bookedHolidays[i].parentElement.firstElementChild.style.backgroundColor = '#fcb05f';
+            bookedHolidays[i].parentElement.firstElementChild.style.borderColor = '#fcb05f';
             break;
           }
         }
@@ -73,7 +73,7 @@
   {
     var i;
     for (i = 0; i < cells.length; i++) {
-      if (cells[i].classList.contains("pickadate-partial")) {
+      if (cells[i].classList.contains('pickadate-partial')) {
         var date = '' + i;
 
         if (date.length == 1) {
@@ -85,8 +85,8 @@
         var j;	
         for (j = 0; j < bankHolidayDates.length; j++) {
           if (bankHolidayDates[j].date == holidayDate) {
-            cells[i].firstElementChild.style.backgroundColor = "#fcb05f";
-            cells[i].firstElementChild.style.borderColor = "#fcb05f";
+            cells[i].firstElementChild.style.backgroundColor = '#fcb05f';
+            cells[i].firstElementChild.style.borderColor = '#fcb05f';
             break;
           }
         }
