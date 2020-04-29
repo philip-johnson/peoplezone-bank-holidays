@@ -26,16 +26,30 @@
   if (bookedHolidays.length == 0) {
     var i, j;
     var teamMemberRows = document.getElementsByClassName("pickadate-cell");
-    var monthYear = document.getElementsByClassName("pickadate-centered-heading").firstElement.textContent.trim().split(' ');
+    var monthYear = document.getElementsByClassName("pickadate-centered-heading")[1].innerText.trim().split(' ');
     
-    var monthYearFormatted = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-';
+    var monthYearFormatted = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-';    
+    
+    processRows(teamMemberRows, englandDates);
 
+    if (i == teamMemberRows.length - 1) {
+      var otherTeamMemberRows = teamMemberRows[i].lastChild.firstChild.children;
+      processRows(otherTeamMemberRows, englandDates);
+    }
     
+    function processRows(rows, bankHolidayDates) {
+      for (i = 0; i < teamMemberRows.length; i++) {
+        var teamMemberCells;
+        var teamMemberCells = teamMemberRows[i].children;
+
+        processCells(teamMemberCells, bankHolidayDates);
+      }
+    };
     
-    for (i = 2; i < teamMemberRows.length; i++) {
-      var teamMemberCells = teamMemberRows[i].children;
-      for (j = 1; j < teamMemberCells; j++) {
-        if (teamMemberCells[j].classList.contains("pickadate-partial")) {
+    function processCells(cells, bankHolidayDates)
+    {
+      for (j = 0; j < cells; j++) {
+        if (cells[j].classList.contains("pickadate-partial")) {
           var date = '' + j;
           
           if (date.length == 1) {
@@ -45,16 +59,16 @@
           var holidayDate = monthYearFormatted + date;
           
           var k;	
-          for (k = 0; k < englandDates.length; k++) {
-            if (englandDates[k].date == holidayDate) {
-              teamMemberCells[j].style.backgroundColor = "orange";
-              teamMemberCells[j].style.borderColor = "orange";
+          for (k = 0; k < bankHolidayDates.length; k++) {
+            if (bankHolidayDates[k].date == holidayDate) {
+              cells[j].style.backgroundColor = "orange";
+              cells[j].style.borderColor = "orange";
               break;
             }
           }
         }
-      }         
-    }
+      }
+    };
   }
   else {
     var i;
