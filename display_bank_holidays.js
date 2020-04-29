@@ -50,8 +50,8 @@
           if (englandDates[j].date == holidayDate) {
             bookedHolidays[i].style.backgroundColor = "orange";
             bookedHolidays[i].style.borderColor = "orange";
-            bookedHolidays[i].parentElement.firstElementChild.style.backgroundColor = "orange";
-            bookedHolidays[i].parentElement.firstElementChild.style.borderColor = "orange";
+            bookedHolidays[i].parentElement.firstElementChild.style.backgroundColor = "#fcb05f !important";
+            bookedHolidays[i].parentElement.firstElementChild.style.borderColor = "#fcb05f !important";
             break;
           }
         }
@@ -85,8 +85,8 @@
         var j;	
         for (j = 0; j < bankHolidayDates.length; j++) {
           if (bankHolidayDates[j].date == holidayDate) {
-            cells[i].firstElementChild.style.backgroundColor = "orange";
-            cells[i].firstElementChild.style.borderColor = "orange";
+            cells[i].firstElementChild.style.backgroundColor = "#fcb05f !important";
+            cells[i].firstElementChild.style.borderColor = "#fcb05f !important";
             break;
           }
         }
