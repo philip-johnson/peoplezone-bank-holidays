@@ -21,78 +21,76 @@
                     December: '12',
                };
             
-  var bookedHolidays = document.getElementsByClassName("pickadate-partialdate");
-  
-  if (bookedHolidays.length == 0) {
-    var i, j;
-    var teamMemberRows = document.getElementsByClassName("pickadate-cell");
-    var monthYear = document.getElementsByClassName("pickadate-centered-heading")[1].innerText.trim().split(' ');
-    
-    var monthYearFormatted = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-';    
-    
-    processRows(teamMemberRows, englandDates);
+    var bookedHolidays = document.getElementsByClassName("pickadate-partialdate");
 
-    if (i == teamMemberRows.length - 1) {
-      var otherTeamMemberRows = teamMemberRows[i].lastChild.firstChild.children;
+    if (bookedHolidays.length == 0) {
+      var monthYear = document.getElementsByClassName("pickadate-centered-heading")[1].innerText.trim().split(' ');
+      var monthYearFormatted = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-';    
+      
+      var teamMemberRows = document.getElementsByClassName("pickadate-cell");      
+      processRows(teamMemberRows, englandDates);
+      
+      var otherTeamMemberRows = teamMemberRows.lastChild.lastChild.firstChild.children;
       processRows(otherTeamMemberRows, englandDates);
     }
-    
-    function processRows(rows, bankHolidayDates) {
-      for (i = 0; i < teamMemberRows.length; i++) {
-        var teamMemberCells;
-        var teamMemberCells = teamMemberRows[i].children;
+    else {
+      var i;
+      for (i = 0; i < bookedHolidays.length; i++) {
+        var date = bookedHolidays[i].textContent;
+        var monthYear = bookedHolidays[i].parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.lastElementChild.textContent.trim().split(' ');
 
-        processCells(teamMemberCells, bankHolidayDates);
-      }
-    };
-    
-    function processCells(cells, bankHolidayDates)
-    {
-      for (j = 0; j < cells; j++) {
-        if (cells[j].classList.contains("pickadate-partial")) {
-          var date = '' + j;
-          
-          if (date.length == 1) {
-            date = '0' + date;
-          }
-          
-          var holidayDate = monthYearFormatted + date;
-          
-          var k;	
-          for (k = 0; k < bankHolidayDates.length; k++) {
-            if (bankHolidayDates[k].date == holidayDate) {
-              cells[j].style.backgroundColor = "orange";
-              cells[j].style.borderColor = "orange";
-              break;
-            }
-          }
+        if (date.length == 1) {
+          date = '0' + date;
         }
-      }
-    };
-  }
-  else {
-    var i;
-    for (i = 0; i < bookedHolidays.length; i++) {
-      var date = bookedHolidays[i].textContent;
-      var monthYear = bookedHolidays[i].parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.lastElementChild.textContent.trim().split(' ');
 
-      if (date.length == 1) {
-        date = '0' + date;
-      }
+        var holidayDate = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-' + date;
 
-      var holidayDate = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-' + date;
-
-      var j;	
-      for (j = 0; j < englandDates.length; j++) {
-        if (englandDates[j].date == holidayDate) {
-          bookedHolidays[i].style.backgroundColor = "orange";
-          bookedHolidays[i].style.borderColor = "orange";
-          bookedHolidays[i].parentElement.firstElementChild.style.backgroundColor = "orange";
-          bookedHolidays[i].parentElement.firstElementChild.style.borderColor = "orange";
-          break;
+        var j;	
+        for (j = 0; j < englandDates.length; j++) {
+          if (englandDates[j].date == holidayDate) {
+            bookedHolidays[i].style.backgroundColor = "orange";
+            bookedHolidays[i].style.borderColor = "orange";
+            bookedHolidays[i].parentElement.firstElementChild.style.backgroundColor = "orange";
+            bookedHolidays[i].parentElement.firstElementChild.style.borderColor = "orange";
+            break;
+          }
         }
       }
     }
-  }
+  };
+  
+  function processRows(rows, bankHolidayDates) {
+    var i;
+    for (i = 0; i < rows.length; i++) {
+      var teamMemberCells;
+      var teamMemberCells = rows[i].children;
+
+      processCells(teamMemberCells, bankHolidayDates);
+    }
+  };
+
+  function processCells(cells, bankHolidayDates)
+  {
+    var i;
+    for (i = 0; i < cells.length; i++) {
+      if (cells[i].classList.contains("pickadate-partial")) {
+        var date = '' + i;
+
+        if (date.length == 1) {
+          date = '0' + date;
+        }
+
+        var holidayDate = monthYearFormatted + date;
+
+        var j;	
+        for (j = 0; j < bankHolidayDates.length; j++) {
+          if (bankHolidayDates[j].date == holidayDate) {
+            cells[i].style.backgroundColor = "orange";
+            cells[i].style.borderColor = "orange";
+            break;
+          }
+        }
+      }
+    }
   };
 })()
