@@ -30,7 +30,7 @@
       var teamMemberRows = document.getElementsByClassName("pickadate-cell");      
       processRows(teamMemberRows, englandDates, monthYearFormatted);
       
-      var otherTeamMemberRows = teamMemberRows.lastChild.lastChild.firstChild.children;
+      var otherTeamMemberRows = teamMemberRows.lastElementChild.lastElementChild.firstElementChild.children;
       processRows(otherTeamMemberRows, englandDates, monthYearFormatted);
     }
     else {
@@ -85,8 +85,8 @@
         var j;	
         for (j = 0; j < bankHolidayDates.length; j++) {
           if (bankHolidayDates[j].date == holidayDate) {
-            cells[i].firstChild.style.backgroundColor = "orange";
-            cells[i].firstChild.style.borderColor = "orange";
+            cells[i].firstElementChild.style.backgroundColor = "orange";
+            cells[i].firstElementChild.style.borderColor = "orange";
             break;
           }
         }
