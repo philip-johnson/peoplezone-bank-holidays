@@ -28,10 +28,10 @@
       var monthYearFormatted = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-';    
       
       var teamMemberRows = document.getElementsByClassName("pickadate-cell");      
-      processRows(teamMemberRows, englandDates);
+      processRows(teamMemberRows, englandDates, monthYearFormatted);
       
       var otherTeamMemberRows = teamMemberRows.lastChild.lastChild.firstChild.children;
-      processRows(otherTeamMemberRows, englandDates);
+      processRows(otherTeamMemberRows, englandDates, monthYearFormatted);
     }
     else {
       var i;
@@ -59,17 +59,17 @@
     }
   };
   
-  function processRows(rows, bankHolidayDates) {
+  function processRows(rows, bankHolidayDates, monthYearFormatted) {
     var i;
     for (i = 0; i < rows.length; i++) {
       var teamMemberCells;
       var teamMemberCells = rows[i].children;
 
-      processCells(teamMemberCells, bankHolidayDates);
+      processCells(teamMemberCells, bankHolidayDates, monthYearFormatted);
     }
   };
 
-  function processCells(cells, bankHolidayDates)
+  function processCells(cells, bankHolidayDates, monthYearFormatted)
   {
     var i;
     for (i = 0; i < cells.length; i++) {
