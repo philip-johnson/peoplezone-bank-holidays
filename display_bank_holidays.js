@@ -22,25 +22,61 @@
                };
             
   var bookedHolidays = document.getElementsByClassName("pickadate-partialdate");
-  var i;
-  for (i = 0; i < bookedHolidays.length; i++) {
-    var date = bookedHolidays[i].textContent;
-    var monthYear = bookedHolidays[i].parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.lastElementChild.textContent.trim().split(' ');
+  
+  if (bookedHolidays.length == 0) {
+    var i, j;
+    var teamMemberRows = document.getElementsByClassName("pickadate-cell");
+    var monthYear = document.getElementsByClassName("pickadate-centered-heading").firstElement.textContent.trim().split(' ');
     
-    if (date.length == 1) {
-      date = '0' + date;
+    var monthYearFormatted = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-';
+
+    
+    
+    for (i = 2; i < teamMemberRows.length; i++) {
+      var teamMemberCells = teamMemberRows[i].children;
+      for (j = 1; j < teamMemberCells; j++) {
+        if (teamMemberCells[j].classList.contains("pickadate-partial")) {
+          var date = '' + j;
+          
+          if (date.length == 1) {
+            date = '0' + date;
+          }
+          
+          var holidayDate = monthYearFormatted + date;
+          
+          var k;	
+          for (k = 0; k < englandDates.length; k++) {
+            if (englandDates[k].date == holidayDate) {
+              teamMemberCells[j].style.backgroundColor = "orange";
+              teamMemberCells[j].style.borderColor = "orange";
+              break;
+            }
+          }
+        }
+      }         
     }
-   
-    var holidayDate = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-' + date;
-	
-    var j;	
-    for (j = 0; j < englandDates.length; j++) {
-      if (englandDates[j].date == holidayDate) {
-        bookedHolidays[i].style.backgroundColor = "orange";
-        bookedHolidays[i].style.borderColor = "orange";
-        bookedHolidays[i].parentElement.firstElementChild.style.backgroundColor = "orange";
-        bookedHolidays[i].parentElement.firstElementChild.style.borderColor = "orange";
-        break;
+  }
+  else {
+    var i;
+    for (i = 0; i < bookedHolidays.length; i++) {
+      var date = bookedHolidays[i].textContent;
+      var monthYear = bookedHolidays[i].parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.lastElementChild.textContent.trim().split(' ');
+
+      if (date.length == 1) {
+        date = '0' + date;
+      }
+
+      var holidayDate = monthYear[1] + '-' + monthNameMap[monthYear[0]] + '-' + date;
+
+      var j;	
+      for (j = 0; j < englandDates.length; j++) {
+        if (englandDates[j].date == holidayDate) {
+          bookedHolidays[i].style.backgroundColor = "orange";
+          bookedHolidays[i].style.borderColor = "orange";
+          bookedHolidays[i].parentElement.firstElementChild.style.backgroundColor = "orange";
+          bookedHolidays[i].parentElement.firstElementChild.style.borderColor = "orange";
+          break;
+        }
       }
     }
   }
