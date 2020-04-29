@@ -85,8 +85,8 @@
         var j;	
         for (j = 0; j < bankHolidayDates.length; j++) {
           if (bankHolidayDates[j].date == holidayDate) {
-            cells[i].style.backgroundColor = "orange";
-            cells[i].style.borderColor = "orange";
+            cells[i].firstChild.style.backgroundColor = "orange";
+            cells[i].firstChild.style.borderColor = "orange";
             break;
           }
         }
