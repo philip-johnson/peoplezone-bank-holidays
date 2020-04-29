@@ -48,8 +48,8 @@
         var j;	
         for (j = 0; j < englandDates.length; j++) {
           if (englandDates[j].date == holidayDate) {
-            bookedHolidays[i].style.backgroundColor = "orange";
-            bookedHolidays[i].style.borderColor = "orange";
+            bookedHolidays[i].style.backgroundColor = "#fcb05f";
+            bookedHolidays[i].style.borderColor = "#fcb05f";
             bookedHolidays[i].parentElement.firstElementChild.style.backgroundColor = "#fcb05f";
             bookedHolidays[i].parentElement.firstElementChild.style.borderColor = "#fcb05f";
             break;
